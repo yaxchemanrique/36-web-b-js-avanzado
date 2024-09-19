@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hola Devf</h1>
+  <a href="/users">Usuarios</a>
+  <ul>
+    <li> <%= 2 + 2%> </li>
+    <li> Inicio -> <% 2 + 2%> <- fin</li>
+    <li><%= locals.firstName %></li>
+    <% if (3 > 2) { %>
+     <code>Sí se cumplió la condición</code>
+    <% } else { %>
+      <code>no se complio la condición</code>
+    <% } %>
+
+      <br>
+      <hr>
+
+    <% if (locals.firstName) { %>
+      <code>Hola <%= locals.firstName %></code>
+     <% } else { %>
+       <code>Hola, estudiante!</code>
+     <% } %>
+  </ul>
+</body>
+</html>
