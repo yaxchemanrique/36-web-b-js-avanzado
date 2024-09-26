@@ -61,3 +61,13 @@ main {
   margin-block-start: 0;
   margin-block-end: 3.25rem;
 }
+
+.container {
+  background-color: aqua;
+}
+
+#borders {
+  display: flex;
+  gap: 1rem;
+  overflow: scroll;
+}
