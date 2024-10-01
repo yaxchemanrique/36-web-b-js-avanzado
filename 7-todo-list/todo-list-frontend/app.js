@@ -35,3 +35,33 @@ async function getTasks() {
 }
 
 getTasks()
+
+const form = document.querySelector('form');
+const taskName = form.querySelector('#taskName')
+const radiosNL = form.querySelectorAll('input[name="status"]');
+const radios = [...radiosNL];
+
+async function sendTask(body) {
+  const PostConfig = {
+    method: 'POST',
+    body: JSON.stringify({
+      id: Math.random(),
+      task: body.task,
+      status: body.status
+    })
+  }
+  const response = await fetch(URL, PostConfig)
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const taskNameValue = taskName.value
+  const selectedRadio = radios.find((radio) => radio.checked === true);
+  const selectedRadioValue = selectedRadio.id
+
+  const body = {
+    task: taskNameValue,
+    status: selectedRadioValue
+  };
+  sendTask(body)
+})
