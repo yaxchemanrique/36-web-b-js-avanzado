@@ -23,9 +23,16 @@ app.get('/tasks/:id', (req, res)=> {
     res.statusCode = 404;
     res.send(`El ID: ${taskId} no está en la base de datos`)
   }
-
   console.log(selectedTask)
   res.send(selectedTask)
+})
+
+app.post('/tasks', (req, res)=> {
+  const newTask = req.body;
+  tasks.push(newTask);
+  res.status(201).json(newTask);
+  
+  // ! En el front: fetch('hadhgadsj.com/v2/', {method: 'POST', body:{ task, id, }})
 })
 
 app.listen(PORT, () => {
