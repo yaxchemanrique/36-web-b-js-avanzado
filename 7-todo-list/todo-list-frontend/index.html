@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="./app.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+  <nav>
+    <img src="./Logo.png" alt="logoipsum">
+  </nav>
+  <form>
+    <input type="text" name="taskName" id="taskName">
+    <fieldset>
+      <input type="radio" name="status" id="active">
+      <label for="active">active</label>
+      <input type="radio" name="status" id="pending">
+      <label for="pending">pending</label>
+      <input type="radio" name="status" id="closed">
+      <label for="closed">closed</label>
+    </fieldset>
+    <button>+ add</button>
+  </form>
+  <section id="active-section">
+    <h2>active</h2>
+    <div class="tasks-container"></div>
+  </section>
+  <section id="pending-section">
+    <h2>pending</h2>
+    <div class="tasks-container"></div>
+  </section>
+  <section id="closed-section">
+    <h2>closed</h2>
+    <div class="tasks-container"></div>
+  </section>
+</body>
+</html>

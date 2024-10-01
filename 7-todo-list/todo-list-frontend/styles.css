@@ -1,0 +1,9 @@
+input[type="radio"]:checked + label {
+  background-color: rgba(221, 160, 221, 0.5);
+  padding: 0.5rem;
+  border-radius: 100vw;
+}
+
+input[type="radio"] {
+  opacity: 0;
+}
