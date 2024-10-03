@@ -58,12 +58,22 @@ app.post('/tasks', (req, res)=> {
 
 // app.patch
 
-/* app.delete('/tasks/:id', (req, res)=> {
+app.delete('/tasks/:id', (req, res)=> {
   const taskId = req.params.id;
   const taskToDelete = tasks.find((task) => task.id == taskId);
+  if(!taskToDelete) {
+    res.status(404);
+    res.send(`La tarea con el ID: ${taskId} no fue encontrada`)
+  }
+  console.log(taskToDelete)
+  const taskToDeleteId = tasks.indexOf(taskToDelete);
+  tasks.splice(taskToDeleteId, 1);
+  // console.log(tasks);
+  res.status(202);
+  res.send(taskToDelete);
   // tasks -> le vamos a borrar el elemento taskToDelete
   // res.stats(200).send('Elemnto borrado....')
-}) */
+})
 
 // CRUD -> Create Read Update Delete
 // API REST -> CRUD, pokeapi: pokeapi.com/v2/pikachu
