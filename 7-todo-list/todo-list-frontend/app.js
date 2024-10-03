@@ -42,18 +42,24 @@ const radiosNL = form.querySelectorAll('input[name="status"]');
 const radios = [...radiosNL];
 
 async function sendTask(obj) {
+  const reqBody = {
+    id:`${obj.task}-${Math.random()}`,
+      task: obj.task,
+      status: obj.status
+  }
+
   const PostConfig = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      id: Math.random(),
-      task: obj.task,
-      status: obj.status
-    })
+    body: JSON.stringify(reqBody)
   }
+  
   const response = await fetch(URL, PostConfig);
+  // if(!response.ok) {
+  //   renderError()
+  // }
 }
 
 form.addEventListener('submit', (e) => {
