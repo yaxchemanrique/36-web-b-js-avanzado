@@ -7,10 +7,20 @@ const pendingContainer =
 const closedContainer =
   document.querySelector('#closed-section .tasks-container');
 
+
 function renderTasks(arr) {
+  activeContainer.innerHTML = ''
+  pendingContainer.innerHTML = ''
+  closedContainer.innerHTML = ''
+
   arr.forEach(tarea => {
     const taskContainer = document.createElement('div');
-    taskContainer.innerHTML = `<p>${tarea.task}</p>`;
+    taskContainer.setAttribute('id', tarea.id);
+    taskContainer.setAttribute('class', 'task');
+    taskContainer.innerHTML = (`
+      <p>${tarea.task}</p>
+      <button>Borrar</button>
+    `);
 
     switch (tarea.status) {
       case 'active':
@@ -19,11 +29,31 @@ function renderTasks(arr) {
       case 'pending':
         pendingContainer.appendChild(taskContainer);
         break;
-      case 'done':
+      case 'closed':
         closedContainer.appendChild(taskContainer);
         break;
     }
+    // localhost:3000/tasks/:id
+    const taskButton = taskContainer.querySelector('button');
+    taskButton.addEventListener('click', () => {
+      const taskToDeleteId = taskContainer.id;
+      deleteTask(taskToDeleteId);
+    });
+
   })
+}
+
+async function deleteTask(id) {
+  const url = `${URL}/${id}`
+  const deleteConfig = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }
+
+  const response = await fetch(url, deleteConfig);
+  getTasks()
 }
 
 async function getTasks() {
@@ -43,9 +73,9 @@ const radios = [...radiosNL];
 
 async function sendTask(obj) {
   const reqBody = {
-    id:`${obj.task}-${Math.random()}`,
-      task: obj.task,
-      status: obj.status
+    id: `${obj.task}-${Math.random()}`,
+    task: obj.task,
+    status: obj.status
   }
 
   const PostConfig = {
@@ -55,11 +85,13 @@ async function sendTask(obj) {
     },
     body: JSON.stringify(reqBody)
   }
-  
+
   const response = await fetch(URL, PostConfig);
   // if(!response.ok) {
   //   renderError()
   // }
+
+  getTasks()
 }
 
 form.addEventListener('submit', (e) => {
